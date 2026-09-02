@@ -47,13 +47,33 @@ export class FirApiError extends Error {
   }
 }
 
-export const BACKEND_URL = import.meta.env["VITE_BACKEND_URL"] || "http://localhost:8000";
+export const DEFAULT_BACKEND_URL = import.meta.env["VITE_BACKEND_URL"] || "http://localhost:8000";
+const BACKEND_STORAGE_KEY = "fir.backendUrl";
+
+export function getBackendUrl(): string {
+  if (typeof window === "undefined") return DEFAULT_BACKEND_URL;
+  try {
+    return window.localStorage.getItem(BACKEND_STORAGE_KEY)?.replace(/\/+$/, "") || DEFAULT_BACKEND_URL;
+  } catch {
+    return DEFAULT_BACKEND_URL;
+  }
+}
+
+export function setBackendUrl(url: string): string {
+  const cleaned = url.trim().replace(/\/+$/, "") || DEFAULT_BACKEND_URL;
+  try {
+    window.localStorage.setItem(BACKEND_STORAGE_KEY, cleaned);
+  } catch {
+    /* storage unavailable — keep session value only */
+  }
+  return cleaned;
+}
 
 async function request<T>(path: string, init?: RequestInit, timeout = 30000): Promise<T> {
   const controller = new AbortController();
   const timer = window.setTimeout(() => controller.abort(), timeout);
   try {
-    const response = await fetch(`${BACKEND_URL}${path}`, {
+    const response = await fetch(`${getBackendUrl()}${path}`, {
       ...init,
       signal: controller.signal,
       headers: { Accept: "application/json", ...(init?.headers || {}) },
