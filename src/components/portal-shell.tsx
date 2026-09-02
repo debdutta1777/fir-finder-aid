@@ -1,6 +1,6 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
-import { Activity, ClipboardList, FileSearch, FolderOpen, LayoutDashboard, Menu, MessageSquareText, PanelLeftClose, ShieldCheck, Upload, X } from "lucide-react";
+import { Activity, ClipboardList, FileSearch, FolderOpen, LayoutDashboard, Menu, MessageSquareText, PanelLeftClose, Settings2, ShieldCheck, Upload, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
