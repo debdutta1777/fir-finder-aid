@@ -211,6 +211,36 @@ export function HomeLanding() {
           </div>
         </section>
 
+        {/* How it works */}
+        <section className="border-b border-border">
+          <div className="mx-auto w-[min(100%-2rem,1180px)] py-16 sm:py-20">
+            <Reveal>
+              <div className="max-w-2xl">
+                <p className="portal-kicker">Workflow</p>
+                <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+                  Four steps from scanned page to filed record
+                </h2>
+              </div>
+            </Reveal>
+            <ol className="mt-12 grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+              {STEPS.map((entry, index) => (
+                <li key={entry.title} className="bg-card">
+                  <Reveal delay={index * 80}>
+                    <div className="h-full p-6">
+                      <span className="font-serif text-sm font-bold text-chart-1">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <h3 className="mt-3 font-serif text-lg font-bold">{entry.title}</h3>
+                      <p className="mt-2 text-sm leading-6 text-muted-foreground">{entry.text}</p>
+                    </div>
+                  </Reveal>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+
         {/* Features */}
         <section className="portal-grid border-b border-border">
           <div className="mx-auto w-[min(100%-2rem,1180px)] py-16 sm:py-20">
