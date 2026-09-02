@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AssistantRouteImport } from './routes/assistant'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as RecordsRouteImport } from './routes/records'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as UploadRouteImport } from './routes/upload'
 import { Route as SearchFirRouteImport } from './routes/search.fir'
 import { Route as SearchNameRouteImport } from './routes/search.name'
@@ -37,6 +38,11 @@ const RecordsRoute = RecordsRouteImport.update({
   path: '/records',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const UploadRoute = UploadRouteImport.update({
   id: '/upload',
   path: '/upload',
@@ -58,6 +64,7 @@ export interface FileRoutesByFullPath {
   '/assistant': typeof AssistantRoute
   '/dashboard': typeof DashboardRoute
   '/records': typeof RecordsRoute
+  '/settings': typeof SettingsRoute
   '/upload': typeof UploadRoute
   '/search/fir': typeof SearchFirRoute
   '/search/name': typeof SearchNameRoute
@@ -67,6 +74,7 @@ export interface FileRoutesByTo {
   '/assistant': typeof AssistantRoute
   '/dashboard': typeof DashboardRoute
   '/records': typeof RecordsRoute
+  '/settings': typeof SettingsRoute
   '/upload': typeof UploadRoute
   '/search/fir': typeof SearchFirRoute
   '/search/name': typeof SearchNameRoute
@@ -77,6 +85,7 @@ export interface FileRoutesById {
   '/assistant': typeof AssistantRoute
   '/dashboard': typeof DashboardRoute
   '/records': typeof RecordsRoute
+  '/settings': typeof SettingsRoute
   '/upload': typeof UploadRoute
   '/search/fir': typeof SearchFirRoute
   '/search/name': typeof SearchNameRoute
@@ -88,6 +97,7 @@ export interface FileRouteTypes {
     | '/assistant'
     | '/dashboard'
     | '/records'
+    | '/settings'
     | '/upload'
     | '/search/fir'
     | '/search/name'
@@ -97,6 +107,7 @@ export interface FileRouteTypes {
     | '/assistant'
     | '/dashboard'
     | '/records'
+    | '/settings'
     | '/upload'
     | '/search/fir'
     | '/search/name'
@@ -106,6 +117,7 @@ export interface FileRouteTypes {
     | '/assistant'
     | '/dashboard'
     | '/records'
+    | '/settings'
     | '/upload'
     | '/search/fir'
     | '/search/name'
@@ -116,6 +128,7 @@ export interface RootRouteChildren {
   AssistantRoute: typeof AssistantRoute
   DashboardRoute: typeof DashboardRoute
   RecordsRoute: typeof RecordsRoute
+  SettingsRoute: typeof SettingsRoute
   UploadRoute: typeof UploadRoute
   SearchFirRoute: typeof SearchFirRoute
   SearchNameRoute: typeof SearchNameRoute
@@ -151,6 +164,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RecordsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/upload': {
       id: '/upload'
       path: '/upload'
@@ -180,6 +200,7 @@ const rootRouteChildren: RootRouteChildren = {
   AssistantRoute: AssistantRoute,
   DashboardRoute: DashboardRoute,
   RecordsRoute: RecordsRoute,
+  SettingsRoute: SettingsRoute,
   UploadRoute: UploadRoute,
   SearchFirRoute: SearchFirRoute,
   SearchNameRoute: SearchNameRoute,

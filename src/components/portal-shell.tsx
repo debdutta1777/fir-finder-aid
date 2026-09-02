@@ -13,6 +13,7 @@ const navItems = [
   { to: "/search/name", label: "Name search", icon: ClipboardList },
   { to: "/records", label: "All records", icon: FolderOpen },
   { to: "/assistant", label: "Assistant", icon: MessageSquareText },
+  { to: "/settings", label: "Backend connection", icon: Settings2 },
 ] as const;
 
 export function ModeBadge({ mode, health }: { mode: ApiMode; health?: HealthResponse | null }) {
