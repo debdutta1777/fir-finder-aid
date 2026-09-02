@@ -309,6 +309,46 @@ export function HomeLanding() {
           </div>
         </section>
 
+        {/* Assurance */}
+        <section className="border-b border-border">
+          <div className="mx-auto grid w-[min(100%-2rem,1180px)] gap-10 py-16 lg:grid-cols-[1.1fr_.9fr] lg:items-center">
+            <Reveal>
+              <div>
+                <p className="portal-kicker">Custody & control</p>
+                <h2 className="mt-3 text-3xl font-bold tracking-tight">
+                  Built for records that cannot leave the building
+                </h2>
+                <p className="mt-4 max-w-xl text-sm leading-7 text-muted-foreground">
+                  The processing service runs on the station workstation over loopback. There is no external
+                  account, no cloud upload step, and no third-party model call unless an officer explicitly
+                  requests a translation.
+                </p>
+              </div>
+            </Reveal>
+            <div className="grid gap-3">
+              {[
+                { icon: ShieldCheck, title: "Chain of custody preserved", text: "Original scan, OCR text, and generated summary stay together in one record." },
+                { icon: WifiOff, title: "Works without the internet", text: "Every core step — OCR, extraction, summarization — runs offline." },
+                { icon: Database, title: "Auditable local index", text: "Records are stored on the machine and reviewable page by page." },
+              ].map((item, index) => {
+                const Icon = item.icon;
+                return (
+                  <Reveal key={item.title} delay={index * 80}>
+                    <div className="flex gap-4 border-l-2 border-chart-1/60 bg-card px-5 py-4">
+                      <Icon className="mt-0.5 size-5 shrink-0 text-chart-1" aria-hidden />
+                      <div>
+                        <p className="text-sm font-bold">{item.title}</p>
+                        <p className="mt-1 text-sm leading-6 text-muted-foreground">{item.text}</p>
+                      </div>
+                    </div>
+                  </Reveal>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+
         {/* Closing CTA */}
         <section className="relative overflow-hidden bg-sidebar text-sidebar-foreground">
           <div className="landing-mesh landing-mesh-dark" aria-hidden />
