@@ -176,32 +176,34 @@
   background-size: 26px 26px, 100% 100%, 100% 100%;
 }
 .landing-glow { position: absolute; inset-inline-end: -12%; top: -22%; width: 46rem; height: 46rem; pointer-events: none;
-  background: radial-gradient(circle, oklch(0.84 0.075 82 / 0.42) 0%, transparent 62%); filter: blur(12px); }
+  background: radial-gradient(circle, oklch(0.84 0.075 82 / 0.3) 0%, transparent 62%); filter: blur(16px); }
 .landing-underline { position: relative; white-space: nowrap; }
 .landing-underline::after { content: ""; position: absolute; left: 0; bottom: -0.12em; height: 0.14em; width: 100%;
   background: linear-gradient(90deg, var(--color-accent), oklch(0.53 0.09 67)); transform-origin: left; }
-.landing-reveal { opacity: 0; transform: translateY(14px); transition: opacity 620ms ease-out, transform 620ms ease-out; height: 100%; }
+.landing-reveal { opacity: 0; transform: translateY(8px);
+  transition: opacity 700ms cubic-bezier(0.33, 1, 0.68, 1), transform 700ms cubic-bezier(0.33, 1, 0.68, 1); height: 100%; }
 .landing-reveal[data-visible="true"] { opacity: 1; transform: none; }
-.landing-card { transition: transform 260ms ease-out, box-shadow 260ms ease-out, border-color 260ms ease-out; }
-.landing-card:hover { transform: translateY(-4px); border-color: var(--color-accent); box-shadow: 0 18px 40px -22px oklch(0.3 0.055 252 / 0.45); }
+.landing-card { transition: transform 320ms cubic-bezier(0.33, 1, 0.68, 1), box-shadow 320ms cubic-bezier(0.33, 1, 0.68, 1), border-color 320ms ease; }
+.landing-card:hover { transform: translateY(-2px); border-color: color-mix(in oklab, var(--color-accent) 65%, transparent); box-shadow: 0 12px 28px -20px oklch(0.3 0.055 252 / 0.35); }
 .landing-ping { position: relative; display: inline-flex; width: 0.5rem; height: 0.5rem; border-radius: 999px; background: oklch(0.53 0.09 67); }
-.landing-scanline { position: absolute; left: 0; right: 0; height: 2.25rem; pointer-events: none;
-  background: linear-gradient(180deg, transparent, oklch(0.53 0.09 67 / 0.22), transparent); }
+.landing-scanline { position: absolute; left: 0; right: 0; height: 3.5rem; pointer-events: none;
+  background: linear-gradient(180deg, transparent, oklch(0.53 0.09 67 / 0.09), transparent); }
 
 @media (prefers-reduced-motion: no-preference) {
-  .landing-stagger { animation: landing-stagger 760ms cubic-bezier(0.22, 1, 0.36, 1) both; }
-  .landing-underline::after { animation: landing-underline 900ms 420ms cubic-bezier(0.22, 1, 0.36, 1) both; }
-  .landing-ping::before { content: ""; position: absolute; inset: 0; border-radius: 999px; background: oklch(0.53 0.09 67); animation: landing-ping 1.9s cubic-bezier(0, 0, 0.2, 1) infinite; }
-  .landing-glow { animation: landing-drift 14s ease-in-out infinite alternate; }
-  .landing-scanline { animation: landing-scan 2s ease-in-out infinite; }
+  .landing-stagger { animation: landing-stagger 800ms cubic-bezier(0.33, 1, 0.68, 1) both; }
+  .landing-underline::after { animation: landing-underline 1000ms 500ms cubic-bezier(0.33, 1, 0.68, 1) both; }
+  .landing-ping { animation: landing-ping 3.2s ease-in-out infinite; }
+  .landing-glow { animation: landing-drift 26s ease-in-out infinite alternate; }
+  .landing-scanline { animation: landing-scan 5.5s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
 }
 @media (prefers-reduced-motion: reduce) {
   .landing-reveal { opacity: 1; transform: none; transition: none; }
   .landing-scanline { display: none; }
 }
 
-@keyframes landing-stagger { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes landing-stagger { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 @keyframes landing-underline { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-@keyframes landing-ping { 75%, 100% { transform: scale(2.4); opacity: 0; } }
-@keyframes landing-drift { from { transform: translate3d(0, 0, 0) scale(1); } to { transform: translate3d(-3rem, 2rem, 0) scale(1.08); } }
-@keyframes landing-scan { 0% { top: 0; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { top: calc(100% - 2.25rem); opacity: 0; } }
+@keyframes landing-ping { 0%, 100% { opacity: 0.45; } 50% { opacity: 1; } }
+@keyframes landing-drift { from { transform: translate3d(0, 0, 0) scale(1); } to { transform: translate3d(-1.25rem, 0.75rem, 0) scale(1.03); } }
+@keyframes landing-scan { 0% { top: -3.5rem; opacity: 0; } 20% { opacity: 1; } 80% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+
