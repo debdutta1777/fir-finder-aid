@@ -157,3 +157,51 @@
 @media (prefers-reduced-motion: no-preference) { .portal-rise { animation: portal-rise 420ms ease-out both; } }
 @keyframes portal-rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 @media (max-width: 640px) { .portal-main { width: min(100% - 1.25rem, 1180px); padding-top: 1.25rem; } }
+
+/* ---- Landing page motion & hero banner ---- */
+.landing-hero { background: linear-gradient(180deg, oklch(0.985 0.008 90) 0%, var(--color-background) 62%, oklch(0.945 0.02 88) 100%); }
+.landing-mesh { position: absolute; inset: 0; pointer-events: none; opacity: 0.5;
+  background-image:
+    radial-gradient(oklch(0.3 0.055 252 / 0.16) 1.1px, transparent 1.1px),
+    linear-gradient(115deg, transparent 0 42%, oklch(0.53 0.09 67 / 0.07) 42% 43%, transparent 43%),
+    linear-gradient(64deg, transparent 0 61%, oklch(0.3 0.055 252 / 0.06) 61% 62%, transparent 62%);
+  background-size: 26px 26px, 100% 100%, 100% 100%;
+  mask-image: radial-gradient(120% 90% at 70% 10%, oklch(0 0 0) 15%, transparent 78%);
+}
+.landing-mesh-dark { opacity: 0.35;
+  background-image:
+    radial-gradient(oklch(0.97 0.008 90 / 0.22) 1.1px, transparent 1.1px),
+    linear-gradient(115deg, transparent 0 42%, oklch(0.84 0.075 82 / 0.14) 42% 43%, transparent 43%),
+    linear-gradient(64deg, transparent 0 61%, oklch(0.97 0.008 90 / 0.1) 61% 62%, transparent 62%);
+  background-size: 26px 26px, 100% 100%, 100% 100%;
+}
+.landing-glow { position: absolute; inset-inline-end: -12%; top: -22%; width: 46rem; height: 46rem; pointer-events: none;
+  background: radial-gradient(circle, oklch(0.84 0.075 82 / 0.42) 0%, transparent 62%); filter: blur(12px); }
+.landing-underline { position: relative; white-space: nowrap; }
+.landing-underline::after { content: ""; position: absolute; left: 0; bottom: -0.12em; height: 0.14em; width: 100%;
+  background: linear-gradient(90deg, var(--color-accent), oklch(0.53 0.09 67)); transform-origin: left; }
+.landing-reveal { opacity: 0; transform: translateY(14px); transition: opacity 620ms ease-out, transform 620ms ease-out; height: 100%; }
+.landing-reveal[data-visible="true"] { opacity: 1; transform: none; }
+.landing-card { transition: transform 260ms ease-out, box-shadow 260ms ease-out, border-color 260ms ease-out; }
+.landing-card:hover { transform: translateY(-4px); border-color: var(--color-accent); box-shadow: 0 18px 40px -22px oklch(0.3 0.055 252 / 0.45); }
+.landing-ping { position: relative; display: inline-flex; width: 0.5rem; height: 0.5rem; border-radius: 999px; background: oklch(0.53 0.09 67); }
+.landing-scanline { position: absolute; left: 0; right: 0; height: 2.25rem; pointer-events: none;
+  background: linear-gradient(180deg, transparent, oklch(0.53 0.09 67 / 0.22), transparent); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .landing-stagger { animation: landing-stagger 760ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .landing-underline::after { animation: landing-underline 900ms 420ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .landing-ping::before { content: ""; position: absolute; inset: 0; border-radius: 999px; background: oklch(0.53 0.09 67); animation: landing-ping 1.9s cubic-bezier(0, 0, 0.2, 1) infinite; }
+  .landing-glow { animation: landing-drift 14s ease-in-out infinite alternate; }
+  .landing-scanline { animation: landing-scan 2s ease-in-out infinite; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .landing-reveal { opacity: 1; transform: none; transition: none; }
+  .landing-scanline { display: none; }
+}
+
+@keyframes landing-stagger { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes landing-underline { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes landing-ping { 75%, 100% { transform: scale(2.4); opacity: 0; } }
+@keyframes landing-drift { from { transform: translate3d(0, 0, 0) scale(1); } to { transform: translate3d(-3rem, 2rem, 0) scale(1.08); } }
+@keyframes landing-scan { 0% { top: 0; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { top: calc(100% - 2.25rem); opacity: 0; } }
