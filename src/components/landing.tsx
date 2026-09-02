@@ -49,12 +49,20 @@ const FEATURES = [
   },
 ];
 
+const STEPS = [
+  { title: "Upload the scan", text: "Drop a PDF, photo, or TIFF of the FIR straight from the station scanner." },
+  { title: "Read the page", text: "OCR lifts the Hindi, Bengali, or English narrative from the handwritten sheet." },
+  { title: "Extract & summarize", text: "Fourteen fields and a plain-English brief are produced by the local model." },
+  { title: "File & retrieve", text: "The record joins the local index, searchable by number, name, or question." },
+];
+
 const STATS = [
   { value: 14, suffix: "", label: "Metadata fields" },
   { value: 12, suffix: "+", label: "Output languages" },
   { value: 5, suffix: "", label: "File formats" },
   { value: 100, suffix: "%", label: "On-premise" },
 ];
+
 
 function useInView<T extends HTMLElement>() {
   const ref = useRef<T | null>(null);
