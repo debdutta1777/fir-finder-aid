@@ -127,6 +127,14 @@ export async function summarizeFile(file: File, language: string): Promise<{ dat
   } catch (error) {
     if (error instanceof FirApiError) throw error;
     await new Promise((resolve) => window.setTimeout(resolve, 700));
-    return { data: { ...demoSummary, target_language: language === "none" ? null : language, translated_summary: language === "none" ? null : demoSummary.translated_summary, translation_status: language === "none" ? "skipped" : "ok" }, mode: "demo" };
+    return {
+      data: {
+        ...demoSummary,
+        target_language: language === "none" ? null : language,
+        translated_summary: language === "none" ? null : demoSummary.translated_summary,
+        translation_status: language === "none" ? "skipped" : "ok",
+      },
+      mode: "demo",
+    };
   }
 }
