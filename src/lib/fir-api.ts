@@ -47,7 +47,7 @@ export class FirApiError extends Error {
   }
 }
 
-export const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8000";
+export const BACKEND_URL = import.meta.env["VITE_BACKEND_URL"] || "http://localhost:8000";
 
 async function request<T>(path: string, init?: RequestInit, timeout = 30000): Promise<T> {
   const controller = new AbortController();
@@ -79,7 +79,7 @@ export async function getRecords(limit = 25, offset = 0): Promise<{ data: Record
     return { data: await request<RecordsResponse>(`/records?limit=${limit}&offset=${offset}`), mode: "live" };
   } catch {
     return {
-      data: { results: demoRecords.slice(offset, offset + limit), count: Math.min(limit, demoRecords.length - offset), total: 35 },
+      data: { results: demoRecords.slice(offset, offset + limit), count: Math.max(0, Math.min(limit, demoRecords.length - offset)), total: 35 },
       mode: "demo",
     };
   }
@@ -127,6 +127,14 @@ export async function summarizeFile(file: File, language: string): Promise<{ dat
   } catch (error) {
     if (error instanceof FirApiError) throw error;
     await new Promise((resolve) => window.setTimeout(resolve, 700));
-    return { data: { ...demoSummary, target_language: language === "none" ? null : language, translated_summary: language === "none" ? null : demoSummary.translated_summary, translation_status: language === "none" ? "skipped" : "ok" }, mode: "demo" };
+    return {
+      data: {
+        ...demoSummary,
+        target_language: language === "none" ? null : language,
+        translated_summary: language === "none" ? null : demoSummary.translated_summary,
+        translation_status: language === "none" ? "skipped" : "ok",
+      },
+      mode: "demo",
+    };
   }
 }

@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AssistantRouteImport } from './routes/assistant'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as RecordsRouteImport } from './routes/records'
+import { Route as UploadRouteImport } from './routes/upload'
+import { Route as SearchFirRouteImport } from './routes/search.fir'
+import { Route as SearchNameRouteImport } from './routes/search.name'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AssistantRoute = AssistantRouteImport.update({
+  id: '/assistant',
+  path: '/assistant',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecordsRoute = RecordsRouteImport.update({
+  id: '/records',
+  path: '/records',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UploadRoute = UploadRouteImport.update({
+  id: '/upload',
+  path: '/upload',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SearchFirRoute = SearchFirRouteImport.update({
+  id: '/search/fir',
+  path: '/search/fir',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SearchNameRoute = SearchNameRouteImport.update({
+  id: '/search/name',
+  path: '/search/name',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/assistant': typeof AssistantRoute
+  '/dashboard': typeof DashboardRoute
+  '/records': typeof RecordsRoute
+  '/upload': typeof UploadRoute
+  '/search/fir': typeof SearchFirRoute
+  '/search/name': typeof SearchNameRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/assistant': typeof AssistantRoute
+  '/dashboard': typeof DashboardRoute
+  '/records': typeof RecordsRoute
+  '/upload': typeof UploadRoute
+  '/search/fir': typeof SearchFirRoute
+  '/search/name': typeof SearchNameRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/assistant': typeof AssistantRoute
+  '/dashboard': typeof DashboardRoute
+  '/records': typeof RecordsRoute
+  '/upload': typeof UploadRoute
+  '/search/fir': typeof SearchFirRoute
+  '/search/name': typeof SearchNameRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/assistant'
+    | '/dashboard'
+    | '/records'
+    | '/upload'
+    | '/search/fir'
+    | '/search/name'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/assistant'
+    | '/dashboard'
+    | '/records'
+    | '/upload'
+    | '/search/fir'
+    | '/search/name'
+  id:
+    | '__root__'
+    | '/'
+    | '/assistant'
+    | '/dashboard'
+    | '/records'
+    | '/upload'
+    | '/search/fir'
+    | '/search/name'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AssistantRoute: typeof AssistantRoute
+  DashboardRoute: typeof DashboardRoute
+  RecordsRoute: typeof RecordsRoute
+  UploadRoute: typeof UploadRoute
+  SearchFirRoute: typeof SearchFirRoute
+  SearchNameRoute: typeof SearchNameRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/assistant': {
+      id: '/assistant'
+      path: '/assistant'
+      fullPath: '/assistant'
+      preLoaderRoute: typeof AssistantRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/records': {
+      id: '/records'
+      path: '/records'
+      fullPath: '/records'
+      preLoaderRoute: typeof RecordsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/upload': {
+      id: '/upload'
+      path: '/upload'
+      fullPath: '/upload'
+      preLoaderRoute: typeof UploadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/search/fir': {
+      id: '/search/fir'
+      path: '/search/fir'
+      fullPath: '/search/fir'
+      preLoaderRoute: typeof SearchFirRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/search/name': {
+      id: '/search/name'
+      path: '/search/name'
+      fullPath: '/search/name'
+      preLoaderRoute: typeof SearchNameRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AssistantRoute: AssistantRoute,
+  DashboardRoute: DashboardRoute,
+  RecordsRoute: RecordsRoute,
+  UploadRoute: UploadRoute,
+  SearchFirRoute: SearchFirRoute,
+  SearchNameRoute: SearchNameRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

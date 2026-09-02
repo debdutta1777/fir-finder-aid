@@ -1,4 +1,4 @@
-import type { FirRecord, HealthResponse, SummarizeResponse } from "./fir-api";
+import type { FirRecord, HealthResponse, SummaryResponse } from "./fir-api";
 
 export const demoRecords: FirRecord[] = [
   {
@@ -110,7 +110,7 @@ export const demoRecords: FirRecord[] = [
 
 export const demoHealth: HealthResponse = { status: "ok", model_loaded: true, records: 35 };
 
-export const demoSummary: SummarizeResponse = {
+export const demoSummary: SummaryResponse = {
   original_text:
     "FIRST INFORMATION REPORT. Police Station: Barrackpore. The complainant Suman Chakraborty reports that unknown persons entered her residence on 14/03/2024 at approximately 22:00 hrs and removed gold jewellery and cash. Total estimated value Rs. 2,50,000.",
   narrative:
