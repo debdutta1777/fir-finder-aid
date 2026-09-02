@@ -77,28 +77,46 @@ export function LandingDemo() {
         <div className="grid gap-0 sm:grid-cols-[.85fr_1.15fr]">
           <div className="relative overflow-hidden border-b border-border bg-muted/25 p-5 sm:border-b-0 sm:border-r">
             <p className="portal-kicker">Scanned FIR</p>
-            <div className="mt-4 space-y-2.5">
-              {OCR_LINES.map((line, index) => (
-                <p
-                  key={line}
-                  className="text-[11px] leading-5 text-foreground/75"
-                  style={{ opacity: step >= 1 ? 1 : 0.28, transition: `opacity 500ms ${index * 90}ms` }}
-                >
-                  {line}
-                </p>
-              ))}
-              <div className="space-y-2 pt-2" aria-hidden>
-                {[92, 78, 86, 64, 88, 52].map((width, index) => (
+            <div className="relative mt-4 overflow-hidden rounded-md border border-border bg-card px-4 py-4 shadow-[0_1px_0_var(--color-border)]">
+              <div className="space-y-2.5">
+                {OCR_LINES.map((line, index) => (
+                  <p
+                    key={line}
+                    className="text-[11px] leading-5 text-foreground/75"
+                    style={{ opacity: step >= 1 ? 1 : 0.28, transition: `opacity 500ms ${index * 90}ms` }}
+                  >
+                    {line}
+                  </p>
+                ))}
+              </div>
+              <div className="mt-4 space-y-2 border-t border-border pt-4" aria-hidden>
+                {[100, 92, 96, 74].map((width, index) => (
                   <span
                     key={index}
-                    className="block h-1.5 rounded-full bg-primary/12"
+                    className="block h-1.5 rounded-full bg-primary/10"
                     style={{ width: `${width}%` }}
                   />
                 ))}
               </div>
+              {step === 0 && <span className="landing-scanline" aria-hidden />}
             </div>
-            {step === 0 && <span className="landing-scanline" aria-hidden />}
+            <p className="mt-3 text-[10px] uppercase tracking-wider text-muted-foreground">
+              Page 1 of 2 · Hindi OCR
+            </p>
+            <dl className="mt-5 space-y-2 border-t border-border pt-4 text-[10px] uppercase tracking-wider">
+              {[
+                ["Source", "Station scanner"],
+                ["Detected script", "Devanagari"],
+                ["Pages read", step >= 1 ? "2 / 2" : "1 / 2"],
+              ].map(([label, value]) => (
+                <div key={label} className="flex items-center justify-between gap-3">
+                  <dt className="text-muted-foreground">{label}</dt>
+                  <dd className="font-semibold text-foreground/80">{value}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
+
 
           <div className="p-5">
             <div className="flex flex-wrap items-center gap-2">
@@ -129,7 +147,7 @@ export function LandingDemo() {
                   key={label}
                   className="rounded-md border border-border bg-background px-3 py-2"
                   style={{
-                    opacity: step >= 2 ? 1 : 0,
+                    opacity: step >= 2 ? 1 : 0.22,
                     transform: step >= 2 ? "none" : "translateY(6px)",
                     transition: `opacity 460ms ${index * 70}ms, transform 460ms ${index * 70}ms`,
                   }}
@@ -148,7 +166,7 @@ export function LandingDemo() {
                     key={line}
                     className="text-[11px] leading-5 text-foreground/85"
                     style={{
-                      opacity: step >= 3 ? 1 : 0,
+                      opacity: step >= 3 ? 1 : 0.18,
                       transform: step >= 3 ? "none" : "translateY(6px)",
                       transition: `opacity 520ms ${index * 160}ms, transform 520ms ${index * 160}ms`,
                     }}

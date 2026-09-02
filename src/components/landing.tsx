@@ -49,12 +49,20 @@ const FEATURES = [
   },
 ];
 
+const STEPS = [
+  { title: "Upload the scan", text: "Drop a PDF, photo, or TIFF of the FIR straight from the station scanner." },
+  { title: "Read the page", text: "OCR lifts the Hindi, Bengali, or English narrative from the handwritten sheet." },
+  { title: "Extract & summarize", text: "Fourteen fields and a plain-English brief are produced by the local model." },
+  { title: "File & retrieve", text: "The record joins the local index, searchable by number, name, or question." },
+];
+
 const STATS = [
   { value: 14, suffix: "", label: "Metadata fields" },
   { value: 12, suffix: "+", label: "Output languages" },
   { value: 5, suffix: "", label: "File formats" },
   { value: 100, suffix: "%", label: "On-premise" },
 ];
+
 
 function useInView<T extends HTMLElement>() {
   const ref = useRef<T | null>(null);
@@ -211,6 +219,36 @@ export function HomeLanding() {
           </div>
         </section>
 
+        {/* How it works */}
+        <section className="border-b border-border">
+          <div className="mx-auto w-[min(100%-2rem,1180px)] py-16 sm:py-20">
+            <Reveal>
+              <div className="max-w-2xl">
+                <p className="portal-kicker">Workflow</p>
+                <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+                  Four steps from scanned page to filed record
+                </h2>
+              </div>
+            </Reveal>
+            <ol className="mt-12 grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+              {STEPS.map((entry, index) => (
+                <li key={entry.title} className="bg-card">
+                  <Reveal delay={index * 80}>
+                    <div className="h-full p-6">
+                      <span className="font-serif text-sm font-bold text-chart-1">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <h3 className="mt-3 font-serif text-lg font-bold">{entry.title}</h3>
+                      <p className="mt-2 text-sm leading-6 text-muted-foreground">{entry.text}</p>
+                    </div>
+                  </Reveal>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+
         {/* Features */}
         <section className="portal-grid border-b border-border">
           <div className="mx-auto w-[min(100%-2rem,1180px)] py-16 sm:py-20">
@@ -270,6 +308,46 @@ export function HomeLanding() {
             </div>
           </div>
         </section>
+
+        {/* Assurance */}
+        <section className="border-b border-border">
+          <div className="mx-auto grid w-[min(100%-2rem,1180px)] gap-10 py-16 lg:grid-cols-[1.1fr_.9fr] lg:items-center">
+            <Reveal>
+              <div>
+                <p className="portal-kicker">Custody & control</p>
+                <h2 className="mt-3 text-3xl font-bold tracking-tight">
+                  Built for records that cannot leave the building
+                </h2>
+                <p className="mt-4 max-w-xl text-sm leading-7 text-muted-foreground">
+                  The processing service runs on the station workstation over loopback. There is no external
+                  account, no cloud upload step, and no third-party model call unless an officer explicitly
+                  requests a translation.
+                </p>
+              </div>
+            </Reveal>
+            <div className="grid gap-3">
+              {[
+                { icon: ShieldCheck, title: "Chain of custody preserved", text: "Original scan, OCR text, and generated summary stay together in one record." },
+                { icon: WifiOff, title: "Works without the internet", text: "Every core step — OCR, extraction, summarization — runs offline." },
+                { icon: Database, title: "Auditable local index", text: "Records are stored on the machine and reviewable page by page." },
+              ].map((item, index) => {
+                const Icon = item.icon;
+                return (
+                  <Reveal key={item.title} delay={index * 80}>
+                    <div className="flex gap-4 border-l-2 border-chart-1/60 bg-card px-5 py-4">
+                      <Icon className="mt-0.5 size-5 shrink-0 text-chart-1" aria-hidden />
+                      <div>
+                        <p className="text-sm font-bold">{item.title}</p>
+                        <p className="mt-1 text-sm leading-6 text-muted-foreground">{item.text}</p>
+                      </div>
+                    </div>
+                  </Reveal>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
 
         {/* Closing CTA */}
         <section className="relative overflow-hidden bg-sidebar text-sidebar-foreground">
