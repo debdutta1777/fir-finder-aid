@@ -103,6 +103,18 @@ export function LandingDemo() {
             <p className="mt-3 text-[10px] uppercase tracking-wider text-muted-foreground">
               Page 1 of 2 · Hindi OCR
             </p>
+            <dl className="mt-5 space-y-2 border-t border-border pt-4 text-[10px] uppercase tracking-wider">
+              {[
+                ["Source", "Station scanner"],
+                ["Detected script", "Devanagari"],
+                ["Pages read", step >= 1 ? "2 / 2" : "1 / 2"],
+              ].map(([label, value]) => (
+                <div key={label} className="flex items-center justify-between gap-3">
+                  <dt className="text-muted-foreground">{label}</dt>
+                  <dd className="font-semibold text-foreground/80">{value}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
 
 
@@ -135,7 +147,7 @@ export function LandingDemo() {
                   key={label}
                   className="rounded-md border border-border bg-background px-3 py-2"
                   style={{
-                    opacity: step >= 2 ? 1 : 0,
+                    opacity: step >= 2 ? 1 : 0.22,
                     transform: step >= 2 ? "none" : "translateY(6px)",
                     transition: `opacity 460ms ${index * 70}ms, transform 460ms ${index * 70}ms`,
                   }}
@@ -154,7 +166,7 @@ export function LandingDemo() {
                     key={line}
                     className="text-[11px] leading-5 text-foreground/85"
                     style={{
-                      opacity: step >= 3 ? 1 : 0,
+                      opacity: step >= 3 ? 1 : 0.18,
                       transform: step >= 3 ? "none" : "translateY(6px)",
                       transition: `opacity 520ms ${index * 160}ms, transform 520ms ${index * 160}ms`,
                     }}
