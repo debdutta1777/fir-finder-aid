@@ -127,7 +127,7 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 
 export function HomeLanding() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="landing-page min-h-screen bg-background">
       <header className="sticky top-0 z-30 border-b border-sidebar-border bg-sidebar/95 text-sidebar-foreground backdrop-blur">
         <div className="mx-auto flex h-16 w-[min(100%-2rem,1180px)] items-center justify-between">
           <div className="flex items-center gap-3">
@@ -205,7 +205,7 @@ export function HomeLanding() {
         {/* Live walkthrough */}
         <section className="relative overflow-hidden border-b border-border bg-muted/20">
           <div className="landing-glow" aria-hidden />
-          <div className="relative mx-auto w-[min(100%-2rem,1320px)] py-16 sm:py-20">
+          <div className="relative mx-auto w-[min(100%-2rem,1180px)] py-16 sm:py-20">
             <Reveal>
               <div className="mx-auto max-w-2xl text-center">
                 <p className="portal-kicker">Live walkthrough</p>
@@ -219,7 +219,7 @@ export function HomeLanding() {
               </div>
             </Reveal>
             <Reveal delay={120}>
-              <div className="mx-auto mt-12 w-full max-w-[1180px]">
+              <div className="mx-auto mt-10 w-full max-w-[860px]">
                 <LandingDemo wide />
               </div>
             </Reveal>
