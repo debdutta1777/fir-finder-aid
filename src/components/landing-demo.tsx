@@ -31,7 +31,7 @@ const OCR_LINES = [
 ];
 
 /** Auto-cycling walkthrough of the summarize flow — a looping product demo. */
-export function LandingDemo() {
+export function LandingDemo({ wide = false }: { wide?: boolean }) {
   const [step, setStep] = useState(0);
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
