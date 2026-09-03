@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { LandingDemo } from "@/components/landing-demo";
+
 import { EmblemHero } from "@/components/emblem-hero";
 import { LandingVideo } from "@/components/landing-video";
 
