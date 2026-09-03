@@ -74,8 +74,10 @@ export function LandingDemo({ wide = false }: { wide?: boolean }) {
           </span>
         </div>
 
-        <div className="grid gap-0 sm:grid-cols-[.85fr_1.15fr]">
-          <div className="relative overflow-hidden border-b border-border bg-muted/25 p-5 sm:border-b-0 sm:border-r">
+        <div className={`grid gap-0 ${wide ? "sm:grid-cols-[.62fr_1.38fr]" : "sm:grid-cols-[.85fr_1.15fr]"}`}>
+          <div
+            className={`relative overflow-hidden border-b border-border bg-muted/25 sm:border-b-0 sm:border-r ${wide ? "p-6 sm:p-8" : "p-5"}`}
+          >
             <p className="portal-kicker">Scanned FIR</p>
             <div className="relative mt-4 overflow-hidden rounded-md border border-border bg-card px-4 py-4 shadow-[0_1px_0_var(--color-border)]">
               <div className="space-y-2.5">
