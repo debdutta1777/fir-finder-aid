@@ -158,7 +158,7 @@ export function HomeLanding() {
           <div className="landing-mesh" aria-hidden />
           <div className="landing-glow" aria-hidden />
           <div className="relative mx-auto w-[min(100%-2rem,1180px)] py-16 sm:py-24">
-            <div className="grid items-center gap-12 lg:grid-cols-[1.02fr_.98fr]">
+            <div className="grid items-center gap-12">
               <div>
                 <span className="landing-stagger inline-flex items-center gap-2 rounded-full border border-accent bg-accent/25 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-accent-foreground" style={{ animationDelay: "60ms" }}>
                   <span className="landing-ping" aria-hidden />
