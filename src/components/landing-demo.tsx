@@ -30,6 +30,8 @@ const OCR_LINES = [
   "मोटरसाइकिल बाजार पार्किंग से चोरी",
 ];
 
+const DEMO_PHASE_DURATION = 2400;
+
 /** Auto-cycling walkthrough of the summarize flow — a looping product demo. */
 export function LandingDemo({ wide = false }: { wide?: boolean }) {
   const [step, setStep] = useState(0);
@@ -49,7 +51,11 @@ export function LandingDemo({ wide = false }: { wide?: boolean }) {
 
   useEffect(() => {
     if (!visible) return;
-    const timer = window.setInterval(() => setStep((current) => (current + 1) % (STEPS.length + 1)), 1900);
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const timer = window.setInterval(
+      () => setStep((current) => (current + 1) % (STEPS.length + 1)),
+      DEMO_PHASE_DURATION,
+    );
     return () => window.clearInterval(timer);
   }, [visible]);
 
@@ -58,7 +64,10 @@ export function LandingDemo({ wide = false }: { wide?: boolean }) {
   return (
     <div ref={ref} className="relative">
       <div className="absolute -inset-6 -z-10 rounded-[2rem] bg-accent/25 blur-2xl" aria-hidden />
-      <div className="overflow-hidden rounded-xl border border-border bg-card shadow-[0_30px_70px_-30px_oklch(0.3_0.055_252/0.35)]">
+      <div
+        data-wide={wide ? "true" : "false"}
+        className="landing-demo-window overflow-hidden rounded-xl border border-border bg-card shadow-[0_30px_70px_-30px_oklch(0.3_0.055_252/0.35)]"
+      >
         <div className="flex items-center gap-3 border-b border-border bg-muted/60 px-4 py-3">
           <span className="flex gap-1.5" aria-hidden>
             <span className="size-2.5 rounded-full bg-chart-4/70" />
@@ -74,9 +83,9 @@ export function LandingDemo({ wide = false }: { wide?: boolean }) {
           </span>
         </div>
 
-        <div className={`grid gap-0 ${wide ? "sm:grid-cols-[.62fr_1.38fr]" : "sm:grid-cols-[.85fr_1.15fr]"}`}>
+          <div className={`grid min-h-0 gap-0 ${wide ? "flex-1 sm:grid-cols-[.7fr_1.3fr]" : "sm:grid-cols-[.85fr_1.15fr]"}`}>
           <div
-            className={`relative overflow-hidden border-b border-border bg-muted/25 sm:border-b-0 sm:border-r ${wide ? "p-6 sm:p-8" : "p-5"}`}
+            className={`relative min-w-0 overflow-hidden border-b border-border bg-muted/25 sm:border-b-0 sm:border-r ${wide ? "p-6 sm:p-8" : "p-5"}`}
           >
             <p className="portal-kicker">Scanned FIR</p>
             <div className="relative mt-4 overflow-hidden rounded-md border border-border bg-card px-4 py-4 shadow-[0_1px_0_var(--color-border)]">
@@ -85,7 +94,7 @@ export function LandingDemo({ wide = false }: { wide?: boolean }) {
                   <p
                     key={line}
                     className="text-[11px] leading-5 text-foreground/75"
-                    style={{ opacity: step >= 1 ? 1 : 0.28, transition: `opacity 500ms ${index * 90}ms` }}
+                    style={{ opacity: step >= 1 ? 1 : 0.28, transitionDelay: `${index * 70}ms` }}
                   >
                     {line}
                   </p>
@@ -120,7 +129,7 @@ export function LandingDemo({ wide = false }: { wide?: boolean }) {
           </div>
 
 
-          <div className={wide ? "p-6 sm:p-8" : "p-5"}>
+          <div className={`min-w-0 ${wide ? "p-6 sm:p-8" : "p-5"}`}>
             <div className="flex flex-wrap items-center gap-2">
               {STEPS.map((item, index) => {
                 const Icon = item.icon;
@@ -136,7 +145,7 @@ export function LandingDemo({ wide = false }: { wide?: boolean }) {
                           : "border-border/60 text-muted-foreground/55"
                     }`}
                   >
-                    <Icon className={`size-3 ${state === "now" ? "animate-pulse" : ""}`} aria-hidden />
+                    <Icon className="size-3" aria-hidden />
                     {item.label}
                   </span>
                 );
@@ -151,7 +160,7 @@ export function LandingDemo({ wide = false }: { wide?: boolean }) {
                   style={{
                     opacity: step >= 2 ? 1 : 0.22,
                     transform: step >= 2 ? "none" : "translateY(6px)",
-                    transition: `opacity 460ms ${index * 70}ms, transform 460ms ${index * 70}ms`,
+                     transitionDelay: `${index * 70}ms`,
                   }}
                 >
                   <p className="text-[9px] uppercase tracking-wider text-muted-foreground">{label}</p>
@@ -170,7 +179,7 @@ export function LandingDemo({ wide = false }: { wide?: boolean }) {
                     style={{
                       opacity: step >= 3 ? 1 : 0.18,
                       transform: step >= 3 ? "none" : "translateY(6px)",
-                      transition: `opacity 520ms ${index * 160}ms, transform 520ms ${index * 160}ms`,
+                       transitionDelay: `${index * 90}ms`,
                     }}
                   >
                     {line}
@@ -181,7 +190,7 @@ export function LandingDemo({ wide = false }: { wide?: boolean }) {
 
             <div
               className="mt-4 flex flex-wrap items-center gap-3 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground"
-              style={{ opacity: step >= 4 ? 1 : 0.35, transition: "opacity 500ms" }}
+              style={{ opacity: step >= 4 ? 1 : 0.35 }}
             >
               <span className="flex items-center gap-1.5 text-chart-2">
                 <CheckCircle2 className="size-3.5" aria-hidden /> Saved to local index
