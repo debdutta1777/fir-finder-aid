@@ -31,7 +31,7 @@ const OCR_LINES = [
 ];
 
 /** Auto-cycling walkthrough of the summarize flow — a looping product demo. */
-export function LandingDemo() {
+export function LandingDemo({ wide = false }: { wide?: boolean }) {
   const [step, setStep] = useState(0);
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
@@ -74,8 +74,10 @@ export function LandingDemo() {
           </span>
         </div>
 
-        <div className="grid gap-0 sm:grid-cols-[.85fr_1.15fr]">
-          <div className="relative overflow-hidden border-b border-border bg-muted/25 p-5 sm:border-b-0 sm:border-r">
+        <div className={`grid gap-0 ${wide ? "sm:grid-cols-[.62fr_1.38fr]" : "sm:grid-cols-[.85fr_1.15fr]"}`}>
+          <div
+            className={`relative overflow-hidden border-b border-border bg-muted/25 sm:border-b-0 sm:border-r ${wide ? "p-6 sm:p-8" : "p-5"}`}
+          >
             <p className="portal-kicker">Scanned FIR</p>
             <div className="relative mt-4 overflow-hidden rounded-md border border-border bg-card px-4 py-4 shadow-[0_1px_0_var(--color-border)]">
               <div className="space-y-2.5">
@@ -118,7 +120,7 @@ export function LandingDemo() {
           </div>
 
 
-          <div className="p-5">
+          <div className={wide ? "p-6 sm:p-8" : "p-5"}>
             <div className="flex flex-wrap items-center gap-2">
               {STEPS.map((item, index) => {
                 const Icon = item.icon;
@@ -141,7 +143,7 @@ export function LandingDemo() {
               })}
             </div>
 
-            <div className="mt-5 grid grid-cols-2 gap-3">
+            <div className={`mt-5 grid gap-3 ${wide ? "grid-cols-2 lg:grid-cols-3" : "grid-cols-2"}`}>
               {FIELDS.map(([label, value], index) => (
                 <div
                   key={label}

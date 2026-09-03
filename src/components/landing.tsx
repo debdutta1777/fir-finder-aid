@@ -158,7 +158,7 @@ export function HomeLanding() {
           <div className="landing-mesh" aria-hidden />
           <div className="landing-glow" aria-hidden />
           <div className="relative mx-auto w-[min(100%-2rem,1180px)] py-16 sm:py-24">
-            <div className="grid items-center gap-12 lg:grid-cols-[1.02fr_.98fr]">
+            <div className="grid items-center gap-12">
               <div>
                 <span className="landing-stagger inline-flex items-center gap-2 rounded-full border border-accent bg-accent/25 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-accent-foreground" style={{ animationDelay: "60ms" }}>
                   <span className="landing-ping" aria-hidden />
@@ -198,10 +198,31 @@ export function HomeLanding() {
                 </ul>
               </div>
 
-              <div className="landing-stagger" style={{ animationDelay: "260ms" }}>
-                <LandingDemo />
-              </div>
             </div>
+          </div>
+        </section>
+
+        {/* Live walkthrough */}
+        <section className="relative overflow-hidden border-b border-border bg-muted/20">
+          <div className="landing-glow" aria-hidden />
+          <div className="relative mx-auto w-[min(100%-2rem,1320px)] py-16 sm:py-20">
+            <Reveal>
+              <div className="mx-auto max-w-2xl text-center">
+                <p className="portal-kicker">Live walkthrough</p>
+                <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+                  Watch one FIR move through the portal
+                </h2>
+                <p className="mt-4 text-sm leading-7 text-muted-foreground sm:text-base">
+                  The scanned page is read, the fields are lifted, and the brief is written — all on the
+                  station workstation.
+                </p>
+              </div>
+            </Reveal>
+            <Reveal delay={120}>
+              <div className="mx-auto mt-12 w-full max-w-[1180px]">
+                <LandingDemo wide />
+              </div>
+            </Reveal>
           </div>
         </section>
 
