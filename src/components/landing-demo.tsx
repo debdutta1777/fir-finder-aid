@@ -63,29 +63,29 @@ export function LandingDemo({ wide = false }: { wide?: boolean }) {
 
   return (
     <div ref={ref} className="relative">
-      <div className="absolute -inset-6 -z-10 rounded-[2rem] bg-accent/25 blur-2xl" aria-hidden />
+      <div className="absolute -inset-3 -z-10 rounded-[1.5rem] bg-accent/15 blur-xl" aria-hidden />
       <div
         data-wide={wide ? "true" : "false"}
-        className="landing-demo-window overflow-hidden rounded-xl border border-border bg-card shadow-[0_30px_70px_-30px_oklch(0.3_0.055_252/0.35)]"
+        className="landing-demo-window overflow-hidden rounded-lg border border-border bg-card shadow-xl"
       >
-        <div className="flex items-center gap-3 border-b border-border bg-muted/60 px-4 py-3">
+        <div className="flex items-center gap-2.5 border-b border-border bg-muted/60 px-3 py-2.5">
           <span className="flex gap-1.5" aria-hidden>
-            <span className="size-2.5 rounded-full bg-chart-4/70" />
-            <span className="size-2.5 rounded-full bg-chart-5/80" />
-            <span className="size-2.5 rounded-full bg-chart-2/60" />
+            <span className="size-2 rounded-full bg-chart-4/70" />
+            <span className="size-2 rounded-full bg-chart-5/80" />
+            <span className="size-2 rounded-full bg-chart-2/60" />
           </span>
-          <span className="flex flex-1 items-center gap-2 rounded-md border border-border bg-background px-3 py-1.5 text-xs text-muted-foreground">
-            <Lock className="size-3" aria-hidden />
+          <span className="flex flex-1 items-center gap-2 rounded-md border border-border bg-background px-2.5 py-1 text-[11px] text-muted-foreground">
+            <Lock className="size-2.5" aria-hidden />
             localhost:8000 / summarize
           </span>
-          <span className="hidden rounded-full bg-chart-2/12 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-chart-2 sm:inline">
+          <span className="hidden rounded-full bg-chart-2/12 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-chart-2 sm:inline">
             Offline
           </span>
         </div>
 
-          <div className={`grid min-h-0 gap-0 ${wide ? "flex-1 sm:grid-cols-[.7fr_1.3fr]" : "sm:grid-cols-[.85fr_1.15fr]"}`}>
+          <div className={`landing-demo-body grid min-h-0 gap-0 ${wide ? "flex-1 sm:grid-cols-[.82fr_1.18fr]" : "sm:grid-cols-[.85fr_1.15fr]"}`}>
           <div
-            className={`relative min-w-0 overflow-hidden border-b border-border bg-muted/25 sm:border-b-0 sm:border-r ${wide ? "p-6 sm:p-8" : "p-5"}`}
+            className={`relative min-w-0 overflow-hidden border-b border-border bg-muted/25 sm:border-b-0 sm:border-r ${wide ? "p-4 sm:p-5" : "p-5"}`}
           >
             <p className="portal-kicker">Scanned FIR</p>
             <div className="relative mt-4 overflow-hidden rounded-md border border-border bg-card px-4 py-4 shadow-[0_1px_0_var(--color-border)]">
@@ -129,7 +129,7 @@ export function LandingDemo({ wide = false }: { wide?: boolean }) {
           </div>
 
 
-          <div className={`min-w-0 ${wide ? "p-6 sm:p-8" : "p-5"}`}>
+           <div className={`min-w-0 ${wide ? "p-4 sm:p-5" : "p-5"}`}>
             <div className="flex flex-wrap items-center gap-2">
               {STEPS.map((item, index) => {
                 const Icon = item.icon;
@@ -152,7 +152,7 @@ export function LandingDemo({ wide = false }: { wide?: boolean }) {
               })}
             </div>
 
-            <div className={`mt-5 grid gap-3 ${wide ? "grid-cols-2 lg:grid-cols-3" : "grid-cols-2"}`}>
+             <div className={`mt-4 grid gap-2.5 ${wide ? "grid-cols-2 lg:grid-cols-3" : "grid-cols-2"}`}>
               {FIELDS.map(([label, value], index) => (
                 <div
                   key={label}
@@ -169,7 +169,7 @@ export function LandingDemo({ wide = false }: { wide?: boolean }) {
               ))}
             </div>
 
-            <div className="mt-5 rounded-md border border-border bg-muted/35 p-4">
+             <div className="mt-4 rounded-md border border-border bg-muted/35 p-3.5">
               <p className="portal-kicker">English summary</p>
               <div className="mt-3 space-y-2">
                 {SUMMARY_LINES.map((line, index) => (
