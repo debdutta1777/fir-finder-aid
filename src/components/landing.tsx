@@ -198,9 +198,6 @@ export function HomeLanding() {
                 </ul>
               </div>
 
-              <div className="landing-stagger" style={{ animationDelay: "260ms" }}>
-                <LandingDemo />
-              </div>
             </div>
           </div>
         </section>
