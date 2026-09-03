@@ -14,9 +14,7 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-
-import { EmblemHero } from "@/components/emblem-hero";
-import { LandingVideo } from "@/components/landing-video";
+import { LandingDemo } from "@/components/landing-demo";
 
 const FEATURES = [
   {
@@ -201,32 +199,9 @@ export function HomeLanding() {
               </div>
 
               <div className="landing-stagger" style={{ animationDelay: "260ms" }}>
-                <EmblemHero />
+                <LandingDemo />
               </div>
             </div>
-          </div>
-        </section>
-
-        {/* Emblem motion feature */}
-        <section className="portal-grid border-b border-border">
-          <div className="mx-auto w-[min(100%-2rem,1180px)] py-16 sm:py-20">
-            <Reveal>
-              <div className="mx-auto max-w-2xl text-center">
-                <p className="portal-kicker">In motion</p>
-                <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-                  The seal on every record
-                </h2>
-                <p className="mt-4 text-base leading-7 text-muted-foreground">
-                  A minimal study of the State Emblem of India — the mark that sits behind every first
-                  information report processed on this workstation.
-                </p>
-              </div>
-            </Reveal>
-            <Reveal delay={120}>
-              <div className="mx-auto mt-12 w-full max-w-[980px]">
-                <LandingVideo />
-              </div>
-            </Reveal>
           </div>
         </section>
 
