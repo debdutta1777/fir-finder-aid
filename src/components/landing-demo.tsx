@@ -120,7 +120,7 @@ export function LandingDemo({ wide = false }: { wide?: boolean }) {
           </div>
 
 
-          <div className="p-5">
+          <div className={wide ? "p-6 sm:p-8" : "p-5"}>
             <div className="flex flex-wrap items-center gap-2">
               {STEPS.map((item, index) => {
                 const Icon = item.icon;
