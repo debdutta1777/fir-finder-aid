@@ -154,7 +154,7 @@ export function HomeLanding() {
 
       <main>
         {/* Hero banner */}
-        <section className="landing-hero relative overflow-hidden border-b border-border">
+        <section className="landing-hero relative overflow-hidden">
           <div className="landing-mesh" aria-hidden />
           <div className="landing-glow" aria-hidden />
           <div className="relative mx-auto w-[min(100%-2rem,1180px)] py-16 sm:py-24">
