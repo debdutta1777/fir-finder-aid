@@ -93,7 +93,7 @@ function EditorialUnderline({ children }: { children: React.ReactNode }) {
         className="landing-highlight-line"
         initial={{ scaleX: 0 }}
         whileInView={{ scaleX: 1 }}
-        transition={{ duration: 0.8, ease: "easeInOut" }}
+        transition={{ duration: 1, delay: 0.5, ease: [0.33, 1, 0.68, 1] }}
         viewport={{ once: true }}
         aria-hidden="true"
       />
@@ -183,7 +183,7 @@ export function HomeLanding() {
         </section>
 
         {/* Live walkthrough */}
-        <section className="relative overflow-hidden border-b border-border bg-muted/20">
+        <section className="relative overflow-hidden bg-muted/20">
           <div className="relative mx-auto w-[min(100%-2rem,1180px)] py-16 sm:py-20">
             <Reveal>
               <div className="mx-auto max-w-2xl text-center">
@@ -206,7 +206,7 @@ export function HomeLanding() {
         </section>
 
         {/* Stats */}
-        <section className="border-b border-border bg-card">
+        <section className="bg-card">
           <div className="mx-auto grid w-[min(100%-2rem,1180px)] gap-8 py-12 sm:grid-cols-2 lg:grid-cols-4">
             {STATS.map((stat, index) => (
               <Reveal key={stat.label} delay={index * 90}>
@@ -220,7 +220,7 @@ export function HomeLanding() {
         </section>
 
         {/* How it works */}
-        <section className="border-b border-border">
+        <section>
           <div className="mx-auto w-[min(100%-2rem,1180px)] py-16 sm:py-20">
             <Reveal>
               <div className="max-w-2xl">
@@ -250,7 +250,7 @@ export function HomeLanding() {
 
 
         {/* Features */}
-        <section className="border-b border-border">
+        <section>
           <div className="mx-auto w-[min(100%-2rem,1180px)] py-16 sm:py-20">
             <Reveal>
               <div className="max-w-2xl">
@@ -284,7 +284,7 @@ export function HomeLanding() {
         </section>
 
         {/* Supported inputs */}
-        <section className="border-b border-border bg-card">
+        <section className="bg-card">
           <div className="mx-auto grid w-[min(100%-2rem,1180px)] gap-10 py-16 lg:grid-cols-[.9fr_1.1fr]">
             <Reveal>
               <div>
@@ -310,7 +310,7 @@ export function HomeLanding() {
         </section>
 
         {/* Assurance */}
-        <section className="border-b border-border">
+        <section>
           <div className="mx-auto grid w-[min(100%-2rem,1180px)] gap-10 py-16 lg:grid-cols-[1.1fr_.9fr] lg:items-center">
             <Reveal>
               <div>
@@ -351,7 +351,6 @@ export function HomeLanding() {
 
         {/* Closing CTA */}
         <section className="relative overflow-hidden bg-sidebar text-sidebar-foreground">
-          <div className="landing-mesh landing-mesh-dark" aria-hidden />
           <div className="relative mx-auto w-[min(100%-2rem,1180px)] py-16 text-center sm:py-20">
             <Reveal>
               <div className="mx-auto max-w-2xl">

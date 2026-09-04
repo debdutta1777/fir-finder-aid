@@ -63,7 +63,6 @@ export function LandingDemo({ wide = false }: { wide?: boolean }) {
 
   return (
     <div ref={ref} className="relative">
-      <div className="absolute -inset-3 -z-10 rounded-[1.5rem] bg-accent/15 blur-xl" aria-hidden />
       <div
         data-wide={wide ? "true" : "false"}
         className="landing-demo-window overflow-hidden rounded-lg border border-border bg-card shadow-xl"
