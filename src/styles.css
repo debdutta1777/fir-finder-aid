@@ -164,6 +164,10 @@
 
 /* ---- Landing page motion & hero banner ---- */
 .landing-hero { background: linear-gradient(180deg, oklch(0.985 0.008 90) 0%, var(--color-background) 62%, oklch(0.945 0.02 88) 100%); }
+.landing-emblem-wrap { display: flex; min-height: 18rem; align-items: center; justify-content: center; }
+.landing-emblem-mask { width: min(100%, 24rem); aspect-ratio: 1; overflow: hidden; background: var(--color-primary); mask-image: radial-gradient(ellipse 68% 72% at 50% 50%, var(--color-foreground) 53%, transparent 74%); -webkit-mask-image: radial-gradient(ellipse 68% 72% at 50% 50%, var(--color-foreground) 53%, transparent 74%); }
+.landing-emblem-video { display: block; width: 100%; height: 100%; object-fit: cover; mix-blend-mode: screen; opacity: 0.9; filter: saturate(0.7) contrast(1.08); }
+@media (prefers-reduced-motion: reduce) { .landing-emblem-video { opacity: 0.82; } }
 .landing-mesh { position: absolute; inset: 0; pointer-events: none; opacity: 0.5;
   background-image:
     radial-gradient(oklch(0.3 0.055 252 / 0.16) 1.1px, transparent 1.1px),

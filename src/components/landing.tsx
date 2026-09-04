@@ -158,13 +158,13 @@ export function HomeLanding() {
           <div className="landing-mesh" aria-hidden />
           <div className="landing-glow" aria-hidden />
           <div className="relative mx-auto w-[min(100%-2rem,1180px)] py-16 sm:py-24">
-            <div className="grid items-center gap-12">
-              <div>
+            <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-8">
+              <div className="lg:col-span-7">
                 <span className="landing-stagger inline-flex items-center gap-2 rounded-full border border-accent bg-accent/25 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-accent-foreground" style={{ animationDelay: "60ms" }}>
                   <span className="landing-ping" aria-hidden />
                   Runs entirely on your workstation
                 </span>
-                <h1 className="landing-stagger mt-6 text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl" style={{ animationDelay: "140ms" }}>
+                <h1 className="landing-stagger mt-6 max-w-3xl text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl" style={{ animationDelay: "140ms" }}>
                   Turn handwritten FIRs into a{" "}
                   <span className="landing-underline text-chart-1">clear case brief</span>
                 </h1>
@@ -198,6 +198,20 @@ export function HomeLanding() {
                 </ul>
               </div>
 
+              <div className="landing-emblem-wrap landing-stagger lg:col-span-5" style={{ animationDelay: "220ms" }}>
+                <div className="landing-emblem-mask" aria-hidden="true">
+                  <video
+                    className="landing-emblem-video"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Prompt__Minimalist_D_motion_g-0iELnC5pvx4bUlne1XRqAHzIBvRJCa.mp4"
+                  />
+                </div>
+                <p className="sr-only">Animated emblem for FIR Summarizer</p>
+              </div>
             </div>
           </div>
         </section>
