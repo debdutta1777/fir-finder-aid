@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { motion } from "motion/react";
 import { Link } from "@tanstack/react-router";
 import {
   ArrowRight,
@@ -112,18 +113,43 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
 }
 
 function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
-  const { ref, inView } = useInView<HTMLDivElement>();
   return (
-    <div
-      ref={ref}
-      className="landing-reveal"
-      data-visible={inView ? "true" : "false"}
-      style={{ transitionDelay: `${delay}ms` }}
+    <motion.div
+      initial={{ opacity: 0, y: 15 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut", delay: delay / 1000 }}
+      viewport={{ once: true, margin: "-50px" }}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }
+
+function EditorialUnderline({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="landing-highlight">
+      {children}
+      <motion.span
+        className="landing-highlight-line"
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        transition={{ duration: 0.8, ease: "easeInOut" }}
+        viewport={{ once: true }}
+        aria-hidden="true"
+      />
+    </span>
+  );
+}
+
+const heroVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1 } },
+};
+
+const heroItemVariants = {
+  hidden: { opacity: 0, y: 12 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: "easeOut" } },
+};
 
 export function HomeLanding() {
   return (
@@ -159,44 +185,26 @@ export function HomeLanding() {
           <div className="landing-glow" aria-hidden />
           <div className="relative mx-auto w-[min(100%-2rem,1180px)] py-16 sm:py-24">
             <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-8">
-              <div className="lg:col-span-7">
-                <span className="landing-stagger inline-flex items-center gap-2 rounded-full border border-accent bg-accent/25 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-accent-foreground" style={{ animationDelay: "60ms" }}>
-                  <span className="landing-ping" aria-hidden />
-                  Runs entirely on your workstation
-                </span>
-                <h1 className="landing-stagger mt-6 max-w-3xl text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl" style={{ animationDelay: "140ms" }}>
-                  Turn handwritten FIRs into a{" "}
-                  <span className="landing-underline text-chart-1">clear case brief</span>
-                </h1>
-                <p className="landing-stagger mt-6 max-w-xl text-base leading-8 text-muted-foreground sm:text-lg" style={{ animationDelay: "220ms" }}>
-                  Scan the record, read the extracted fields, review a plain-English summary, and find related
-                  FIRs — from one focused portal that keeps every document on this machine.
-                </p>
-                <div className="landing-stagger mt-9 flex flex-wrap gap-3" style={{ animationDelay: "300ms" }}>
-                  <Button asChild size="lg" className="group">
-                    <Link to="/dashboard">
-                      Enter investigation portal
-                      <ArrowRight className="transition-transform group-hover:translate-x-1" />
-                    </Link>
-                  </Button>
-                  <Button asChild variant="outline" size="lg">
-                    <Link to="/upload">
-                      Upload an FIR <FileUp />
-                    </Link>
-                  </Button>
-                </div>
-                <ul className="landing-stagger mt-10 flex flex-wrap gap-x-7 gap-y-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ animationDelay: "380ms" }}>
-                  <li className="flex items-center gap-2">
-                    <WifiOff className="size-3.5 text-chart-1" aria-hidden /> Air-gap friendly
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <ShieldCheck className="size-3.5 text-chart-1" aria-hidden /> No case data uploaded
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Database className="size-3.5 text-chart-1" aria-hidden /> Local record index
-                  </li>
-                </ul>
-              </div>
+              <motion.div className="lg:col-span-7" variants={heroVariants} initial="hidden" animate="visible">
+                <motion.span variants={heroItemVariants} className="portal-kicker inline-flex items-center gap-2">
+                  <span className="landing-ping" aria-hidden /> Runs entirely on your workstation
+                </motion.span>
+                <motion.h1 variants={heroItemVariants} className="mt-6 max-w-3xl text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
+                  Turn handwritten FIRs into a{" "}<EditorialUnderline>clear case brief</EditorialUnderline>
+                </motion.h1>
+                <motion.p variants={heroItemVariants} className="mt-6 max-w-xl text-base leading-8 text-muted-foreground sm:text-lg">
+                  Scan the record, read the extracted fields, review a plain-English summary, and find related FIRs — from one focused portal that keeps every document on this machine.
+                </motion.p>
+                <motion.div variants={heroItemVariants} className="mt-9 flex flex-wrap gap-3">
+                  <Button asChild size="lg" className="group"><Link to="/dashboard">Enter investigation portal <ArrowRight className="transition-transform group-hover:translate-x-1" /></Link></Button>
+                  <Button asChild variant="outline" size="lg"><Link to="/upload">Upload an FIR <FileUp /></Link></Button>
+                </motion.div>
+                <motion.ul variants={heroItemVariants} className="mt-10 flex flex-wrap gap-x-7 gap-y-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                  <li className="flex items-center gap-2"><WifiOff className="size-3.5 text-chart-1" aria-hidden /> Air-gap friendly</li>
+                  <li className="flex items-center gap-2"><ShieldCheck className="size-3.5 text-chart-1" aria-hidden /> No case data uploaded</li>
+                  <li className="flex items-center gap-2"><Database className="size-3.5 text-chart-1" aria-hidden /> Local record index</li>
+                </motion.ul>
+              </motion.div>
 
               <div className="landing-emblem-wrap landing-stagger lg:col-span-5" style={{ animationDelay: "220ms" }}>
                 <div className="landing-emblem-mask" aria-hidden="true">
