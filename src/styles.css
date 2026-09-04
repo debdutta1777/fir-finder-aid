@@ -144,13 +144,13 @@
     letter-spacing: 0;
   }
 
-  h1, h2, h3, h4 { font-family: "Playfair Display", Georgia, serif; letter-spacing: 0; }
+  h1, h2, h3, h4 { font-family: "DM Serif Display", Georgia, serif; letter-spacing: 0; }
   ::selection { background: var(--color-accent); color: var(--color-accent-foreground); }
 }
 
 .landing-page { font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif; }
 .landing-page h1, .landing-page h2, .landing-page h3, .landing-page h4,
-.landing-page .font-serif { font-family: "Playfair Display", "Libre Baskerville", Georgia, serif; font-weight: 800; color: oklch(0.27 0.075 252); }
+.landing-page .font-serif { font-family: "DM Serif Display", Georgia, serif; font-weight: 700; color: oklch(0.27 0.075 252); }
 .landing-page h1, .landing-page h2, .landing-page h3 { text-wrap: balance; }
 .landing-page .portal-kicker { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: 0.2em; color: oklch(0.43 0.08 67); }
 .landing-highlight { position: relative; display: inline-block; color: oklch(0.43 0.08 67); font-style: italic; white-space: nowrap; }

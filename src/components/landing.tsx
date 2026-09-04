@@ -121,9 +121,9 @@ export function HomeLanding() {
               <ShieldCheck className="size-5" aria-hidden />
             </span>
             <div>
-              <span className="block font-serif text-sm font-bold tracking-wide">FIR SUMMARIZER</span>
-              <span className="block text-[10px] uppercase tracking-[0.18em] text-sidebar-foreground/65">
-                Investigation portal
+<span className="block font-serif text-sm font-bold tracking-wide">FIR SUMMARIZER</span>
+  <span className="block text-[10px] uppercase tracking-[0.18em] text-sidebar-foreground/65">
+  INVESTIGATION PORTAL
               </span>
             </div>
           </div>
