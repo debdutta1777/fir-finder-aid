@@ -21,7 +21,7 @@ export function ModeBadge({ mode, health }: { mode: ApiMode; health?: HealthResp
   return (
     <Badge variant="outline" className={cn("gap-1.5 border-sidebar-border bg-sidebar/70 text-sidebar-foreground", mode === "demo" && "border-accent/70 text-accent")}>
       <span className={cn("size-1.5 rounded-full bg-accent", !isReady && "bg-chart-4")} />
-      {mode === "demo" ? "Demo mode" : isReady ? "System online" : "Model loading"}
+      {isReady ? "System online" : "Local index offline"}
     </Badge>
   );
 }

@@ -1,5 +1,3 @@
-import { demoHealth, demoRecords, demoSummary } from "./fir-demo";
-
 export type FirRecord = {
   id: number;
   fir_number: string;
@@ -90,7 +88,7 @@ export async function getHealth(): Promise<{ data: HealthResponse; mode: ApiMode
   try {
     return { data: await request<HealthResponse>("/health", undefined, 5000), mode: "live" };
   } catch {
-    return { data: demoHealth, mode: "demo" };
+    return { data: { status: "offline", model_loaded: false, records: 0 }, mode: "demo" };
   }
 }
 
@@ -98,10 +96,7 @@ export async function getRecords(limit = 25, offset = 0): Promise<{ data: Record
   try {
     return { data: await request<RecordsResponse>(`/records?limit=${limit}&offset=${offset}`), mode: "live" };
   } catch {
-    return {
-      data: { results: demoRecords.slice(offset, offset + limit), count: Math.max(0, Math.min(limit, demoRecords.length - offset)), total: 35 },
-      mode: "demo",
-    };
+    return { data: { results: [], count: 0, total: 0 }, mode: "demo" };
   }
 }
 
@@ -110,9 +105,7 @@ export async function searchRecords(term: string): Promise<{ data: RecordsRespon
     return { data: await request<RecordsResponse>(`/search?name=${encodeURIComponent(term)}&q=${encodeURIComponent(term)}`), mode: "live" };
   } catch (error) {
     if (error instanceof FirApiError) throw error;
-    const normalized = term.toLowerCase();
-    const results = demoRecords.filter((record) => Object.values(record).some((value) => String(value).toLowerCase().includes(normalized)));
-    return { data: { results, count: results.length, total: results.length }, mode: "demo" };
+    return { data: { results: [], count: 0, total: 0 }, mode: "demo" };
   }
 }
 
@@ -122,9 +115,7 @@ export async function searchByFirNumber(term: string): Promise<{ data: RecordsRe
     return { data: { results: payload.firs, count: payload.count, total: payload.count }, mode: "live" };
   } catch (error) {
     if (error instanceof FirApiError) throw error;
-    const compact = term.toLowerCase().replace(/[\s/-]/g, "");
-    const results = demoRecords.filter((record) => record.fir_number.toLowerCase().replace(/[\s/-]/g, "").includes(compact));
-    return { data: { results, count: results.length, total: results.length }, mode: "demo" };
+    return { data: { results: [], count: 0, total: 0 }, mode: "demo" };
   }
 }
 
@@ -132,9 +123,7 @@ export async function askRecords(query: string): Promise<{ data: RecordsResponse
   try {
     return { data: await request<RecordsResponse>(`/ask?q=${encodeURIComponent(query)}`), mode: "live" };
   } catch {
-    const normalized = query.toLowerCase();
-    const results = demoRecords.filter((record) => Object.values(record).some((value) => String(value).toLowerCase().includes(normalized)));
-    return { data: { results, count: results.length, total: results.length }, mode: "demo" };
+    return { data: { results: [], count: 0, total: 0 }, mode: "demo" };
   }
 }
 
@@ -146,15 +135,6 @@ export async function summarizeFile(file: File, language: string): Promise<{ dat
     return { data: await request<SummaryResponse>("/summarize", { method: "POST", body }, 300000), mode: "live" };
   } catch (error) {
     if (error instanceof FirApiError) throw error;
-    await new Promise((resolve) => window.setTimeout(resolve, 700));
-    return {
-      data: {
-        ...demoSummary,
-        target_language: language === "none" ? null : language,
-        translated_summary: language === "none" ? null : demoSummary.translated_summary,
-        translation_status: language === "none" ? "skipped" : "ok",
-      },
-      mode: "demo",
-    };
+    throw new FirApiError(503, "The local processing service is unavailable.");
   }
 }
