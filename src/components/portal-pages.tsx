@@ -8,7 +8,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { PortalShell, PageHeader, SectionLabel } from "@/components/portal-shell";
 import { MetadataGrid, RecordDetail, RecordTable, SummaryActions, valueOrFallback } from "@/components/record-ui";
 import { askRecords, getHealth, getRecords, searchByFirNumber, searchRecords, summarizeFile, type ApiMode, type FirRecord, type HealthResponse, type RecordsResponse, type SummaryResponse } from "@/lib/fir-api";
-import { demoHealth } from "@/lib/fir-demo";
 
 const languages = [{ value: "none", label: "English only" }, { value: "hi", label: "Hindi" }, { value: "bn", label: "Bengali" }, { value: "as", label: "Assamese" }, { value: "ur", label: "Urdu" }, { value: "ne", label: "Nepali" }, { value: "ta", label: "Tamil" }, { value: "te", label: "Telugu" }, { value: "mr", label: "Marathi" }];
 
