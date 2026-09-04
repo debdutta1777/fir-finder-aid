@@ -114,7 +114,7 @@ const heroItemVariants = {
 export function HomeLanding() {
   return (
     <div className="landing-page min-h-screen bg-background">
-      <header className="sticky top-0 z-30 border-b border-sidebar-border bg-sidebar/95 text-sidebar-foreground backdrop-blur">
+      <header className="sticky top-0 z-30 border-b border-sidebar-border bg-sidebar text-sidebar-foreground">
         <div className="mx-auto flex h-16 w-[min(100%-2rem,1180px)] items-center justify-between">
           <div className="flex items-center gap-3">
             <span className="flex size-9 items-center justify-center rounded-sm bg-sidebar-primary text-sidebar-primary-foreground">
