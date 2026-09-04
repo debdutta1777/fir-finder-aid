@@ -67,7 +67,7 @@ export function setBackendUrl(url: string): string {
   return cleaned;
 }
 
-async function request<T>(path: string, init?: RequestInit, timeout = 30000): Promise<T> {
+async function request<T>(path: string, init?: RequestInit, timeout = 4000): Promise<T> {
   const controller = new AbortController();
   const timer = window.setTimeout(() => controller.abort(), timeout);
   try {
@@ -86,7 +86,7 @@ async function request<T>(path: string, init?: RequestInit, timeout = 30000): Pr
 
 export async function getHealth(): Promise<{ data: HealthResponse; mode: ApiMode }> {
   try {
-    return { data: await request<HealthResponse>("/health", undefined, 5000), mode: "live" };
+    return { data: await request<HealthResponse>("/health", undefined, 1200), mode: "live" };
   } catch {
     return { data: { status: "offline", model_loaded: false, records: 0 }, mode: "demo" };
   }

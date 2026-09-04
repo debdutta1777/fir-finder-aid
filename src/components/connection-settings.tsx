@@ -19,7 +19,7 @@ const PROBES: Array<{ path: string; label: string }> = [
 export function ConnectionSettingsPage() {
   const [url, setUrl] = useState(DEFAULT_BACKEND_URL);
   const [mode, setMode] = useState<ApiMode>("demo");
-  const [health, setHealth] = useState<HealthResponse | null>(null);
+  const [health, setHealth] = useState<HealthResponse>({ status: "offline", model_loaded: false, records: 0 });
   const [probes, setProbes] = useState<Probe[]>(PROBES.map((p) => ({ ...p, status: "idle" })));
   const [testing, setTesting] = useState(false);
   const [saved, setSaved] = useState(false);
