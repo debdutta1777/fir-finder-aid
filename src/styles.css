@@ -149,8 +149,10 @@
 }
 
 .landing-page { font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif; }
+.landing-page .landing-brand-title { color: #fff; }
 .landing-page h1, .landing-page h2, .landing-page h3, .landing-page h4,
 .landing-page .font-serif { font-family: "DM Serif Display", Georgia, serif; font-weight: 400; color: var(--color-foreground); }
+.landing-page .landing-brand-title { color: #fff; }
 .landing-page h1, .landing-page h2, .landing-page h3 { text-wrap: balance; }
 .landing-page .portal-kicker { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: 0.2em; color: oklch(0.43 0.08 67); }
 .landing-highlight { position: relative; display: inline-block; color: oklch(0.43 0.08 67); font-style: italic; white-space: nowrap; }
