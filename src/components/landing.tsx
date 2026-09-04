@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import { Link } from "@tanstack/react-router";
 import {
@@ -65,49 +64,10 @@ const STATS = [
 ];
 
 
-function useInView<T extends HTMLElement>() {
-  const ref = useRef<T | null>(null);
-  const [inView, setInView] = useState(false);
-  useEffect(() => {
-    const node = ref.current;
-    if (!node) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) setInView(true);
-      },
-      { threshold: 0.2 },
-    );
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, []);
-  return { ref, inView };
-}
-
 function Counter({ value, suffix }: { value: number; suffix: string }) {
-  const { ref, inView } = useInView<HTMLParagraphElement>();
-  const [shown, setShown] = useState(0);
-
-  useEffect(() => {
-    if (!inView) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setShown(value);
-      return;
-    }
-    let frame = 0;
-    const start = performance.now();
-    const tick = (now: number) => {
-      const progress = Math.min((now - start) / 900, 1);
-      setShown(Math.round(value * (1 - Math.pow(1 - progress, 3))));
-      if (progress < 1) frame = requestAnimationFrame(tick);
-    };
-    frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
-  }, [inView, value]);
-
   return (
-    <p ref={ref} className="font-serif text-4xl font-bold text-primary sm:text-5xl">
-      {shown}
-      {suffix}
+    <p className="font-serif text-4xl font-bold text-primary sm:text-5xl">
+      {value}{suffix}
     </p>
   );
 }
@@ -181,8 +141,6 @@ export function HomeLanding() {
       <main>
         {/* Hero banner */}
         <section className="landing-hero relative overflow-hidden">
-          <div className="landing-mesh" aria-hidden />
-          <div className="landing-glow" aria-hidden />
           <div className="relative mx-auto w-[min(100%-2rem,1180px)] py-16 sm:py-24">
             <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-8">
               <motion.div className="lg:col-span-7" variants={heroVariants} initial="hidden" animate="visible">
@@ -226,7 +184,6 @@ export function HomeLanding() {
 
         {/* Live walkthrough */}
         <section className="relative overflow-hidden border-b border-border bg-muted/20">
-          <div className="landing-glow" aria-hidden />
           <div className="relative mx-auto w-[min(100%-2rem,1180px)] py-16 sm:py-20">
             <Reveal>
               <div className="mx-auto max-w-2xl text-center">
@@ -293,7 +250,7 @@ export function HomeLanding() {
 
 
         {/* Features */}
-        <section className="portal-grid border-b border-border">
+        <section className="border-b border-border">
           <div className="mx-auto w-[min(100%-2rem,1180px)] py-16 sm:py-20">
             <Reveal>
               <div className="max-w-2xl">
