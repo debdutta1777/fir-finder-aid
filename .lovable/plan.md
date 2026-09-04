@@ -81,11 +81,11 @@ Restore the FIR Summarizer landing page header and hero headline to their intend
 
 8. The landing hero background should be the light parchment gradient (.landing-hero) flowing continuously — no hard divider border between hero and the walkthrough section below.
 
-Do NOT change the color palette (navy / parchment / brass / muted teal). Do NOT make it a dark theme. Only restore the missing tokens and fonts so the header text is legible (cream on navy) and the hero headline uses DM Serif Display with the brass "clear case brief".
+Do NOT change the color palette (navy / parchment / brass / muted teal). Do NOT make it a dark theme. Only restore the missing tokens, fonts, and the LandingDemo walkthrough so: the header text is legible (cream on navy), the hero headline uses DM Serif Display with the brass "clear case brief" underline reveal, and the auto-cycling walkthrough demo renders in the section below the hero.
 ```
 
 ## Why this fixes it
-- "FIR SUMMARIZER" is invisible because the header is `bg-sidebar` (navy) but its text relies on `--sidebar-foreground`. In your restored env that token is missing/wrong, so it falls back to a dark inherited color. Setting `--sidebar-foreground: oklch(0.97 0.008 90)` (light cream) restores legibility.
+- "FIR SUMMARIZER" is invisible because the header is `bg-sidebar` (navy) but its text relies on `--sidebar-foreground`. In your restored env that token is missing/wrong, so it falls back to a dark inherited color. Setting `--sidebar-foreground: oklch(0.97 0.008 90)` (light cream) makes it white/legible.
 - The hero headline lost its serif look because the DM Serif Display web font isn't loaded in that env. Loading the Google Font + setting `h1..h4 { font-family: "DM Serif Display" }` restores it.
-- "clear case brief" loses its brass color when `--chart-1` is unset; `oklch(0.53 0.09 67)` is the original value.
-```
+- "clear case brief" loses its brass color when `--chart-1` is unset; `oklch(0.53 0.09 67)` is the original value, and the `.landing-underline::after` keyframe provides the animated underline.
+- The blank area below the hero is the missing LandingDemo walkthrough — re-creating the auto-cycling browser mockup and rendering it in the Live walkthrough section brings the animation back.
