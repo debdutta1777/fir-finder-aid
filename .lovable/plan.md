@@ -1,6 +1,11 @@
-# Fix prompt: restore header + hero headline fonts/colors
+# Fix prompt: restore header color + hero headline fonts + walkthrough animation
 
-This is a copy-paste prompt for your other environment. The defect there: the navy header bar shows "FIR SUMMARIZER" in a near-invisible dark-on-dark color and "Investigation portal" in a muted gray, while the hero headline "Turn handwritten FIRs into a clear case brief" lost its intended serif typeface and accent color. Root cause is almost certainly missing/incorrect CSS design tokens (`--sidebar`, `--sidebar-foreground`, etc.) plus the Google Fonts not being loaded.
+This is a copy-paste prompt for your other environment. Three defects there:
+1. The navy header bar shows "FIR SUMMARIZER" in a near-invisible dark-on-dark color — it should be light/white (cream).
+2. The hero headline "Turn handwritten FIRs into a clear case brief" lost its intended serif typeface and brass accent color.
+3. The animated walkthrough demo that sits below the hero (the auto-cycling OCR → extract → summary → ready browser mockup, plus the underline-reveal on "clear case brief") is missing/blank.
+
+Root cause: missing/incorrect CSS design tokens (`--sidebar-foreground`, `--chart-1`, etc.), the Google Fonts (DM Serif Display / DM Sans) not loaded, the `.landing-underline` animation CSS missing, and the `LandingDemo` component/section not rendered.
 
 ## Prompt to paste
 
