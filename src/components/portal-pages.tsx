@@ -12,7 +12,7 @@ import { askRecords, getHealth, getRecords, searchByFirNumber, searchRecords, su
 const languages = [{ value: "none", label: "English only" }, { value: "hi", label: "Hindi" }, { value: "bn", label: "Bengali" }, { value: "as", label: "Assamese" }, { value: "ur", label: "Urdu" }, { value: "ne", label: "Nepali" }, { value: "ta", label: "Tamil" }, { value: "te", label: "Telugu" }, { value: "mr", label: "Marathi" }];
 
 function usePortalData() {
-  const [mode, setMode] = useState<ApiMode>("demo");
+  const [mode, setMode] = useState<ApiMode>("offline");
   const [health, setHealth] = useState<HealthResponse>({ status: "offline", model_loaded: false, records: 0 });
   useEffect(() => { let active = true; void getHealth().then((result) => { if (active) { setMode(result.mode); setHealth(result.data); } }); return () => { active = false; }; }, []);
   return { mode, health };
